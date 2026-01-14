@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofa Emerald Velvet - Detail Produk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* --- 1. CONFIG & VARIABLES (SAMA SEPERTI INDEX) --- */
+        :root {
+            --bg-color: #E0E5EC;
+            --text-main: #2D3748;
+            --text-muted: #718096;
+            --accent-color: #6C63FF; 
+            
+            --shadow-light: rgba(255, 255, 255, 0.60);
+            --shadow-dark: rgba(163, 177, 198, 0.60);
+            
+            --neu-flat: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
+            --neu-flat-hover: 12px 12px 20px rgba(163, 177, 198, 0.7), -12px -12px 20px rgba(255, 255, 255, 0.7);
+            --neu-pressed: inset 6px 6px 10px var(--shadow-dark), inset -6px -6px 10px var(--shadow-light);
+            --neu-icon: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+            
+            --radius-box: 24px;
+            --radius-btn: 12px;
+        }
+
+        /* --- 2. RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { display: block; max-width: 100%; }
+        
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- 3. NAVBAR STYLES (COPY DARI INDEX) --- */
+        .navbar-container { position: sticky; top: 20px; z-index: 1000; margin: 0 20px 40px 20px; }
+        .console-nav { display: flex; justify-content: space-between; align-items: center; background-color: var(--bg-color); padding: 15px 30px; border-radius: 20px; box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light); border: 1px solid rgba(255,255,255,0.2); position: relative; }
+        .nav-logo img { height: 40px; border-radius: 20px; filter: drop-shadow(2px 2px 4px rgba(163, 177, 198, 0.4)); }
+        .nav-links { display: flex; gap: 15px; background: var(--bg-color); padding: 8px; border-radius: 16px; box-shadow: var(--neu-pressed); }
+        .nav-item { padding: 10px 20px; border-radius: 12px; font-weight: 700; color: var(--text-muted); font-size: 0.9rem; transition: all 0.3s ease; }
+        .nav-item:hover, .nav-item.active { color: var(--accent-color); box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light); transform: translateY(-1px); }
+        .nav-socials { display: flex; gap: 12px; }
+        .console-btn { width: 42px; height: 42px; border-radius: 12px; background: var(--bg-color); display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 1.2rem; box-shadow: var(--neu-flat); border: none; cursor: pointer; transition: all 0.3s; }
+        .console-btn:hover { color: var(--accent-color); transform: scale(1.1); box-shadow: var(--neu-flat-hover); }
+        .mobile-toggle { display: none; }
+
+        /* --- 4. PRODUCT DETAIL STYLES --- */
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            margin: 30px 0; color: var(--text-muted); font-size: 0.9rem;
+        }
+        .breadcrumb span { margin: 0 8px; color: var(--accent-color); }
+
+        /* Detail Wrapper (2 Columns) */
+        .product-detail-wrapper {
+            display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; margin-bottom: 80px;
+        }
+
+        /* LEFT: Image Gallery */
+        .gallery-container {
+            display: flex; flex-direction: column; gap: 20px;
+        }
+        .main-image-frame {
+            width: 100%; height: 450px; border-radius: var(--radius-box);
+            padding: 15px; background: var(--bg-color);
+            box-shadow: var(--neu-flat); /* Timbul Frame */
+            display: flex; align-items: center; justify-content: center;
+        }
+        .main-image-frame img {
+            width: 100%; height: 100%; object-fit: cover; border-radius: 16px;
+            box-shadow: var(--neu-pressed); /* Gambar masuk ke dalam frame */
+        }
+
+        .thumbnail-row { display: flex; gap: 15px; }
+        .thumb-btn {
+            width: 80px; height: 80px; border-radius: 16px; padding: 5px;
+            background: var(--bg-color); border: none; cursor: pointer;
+            box-shadow: var(--neu-flat); transition: 0.2s;
+        }
+        .thumb-btn img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .thumb-btn:hover { transform: translateY(-2px); }
+        .thumb-btn.active { box-shadow: var(--neu-pressed); transform: translateY(1px); }
+
+        /* RIGHT: Product Info */
+        .product-info { padding-top: 10px; }
+        .product-cat { color: var(--accent-color); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block; }
+        .product-title { font-family: 'Plus Jakarta Sans'; font-size: 2.5rem; line-height: 1.1; margin-bottom: 15px; }
+        .product-price { font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 25px; display: flex; align-items: center; gap: 15px; }
+        .old-price { font-size: 1.2rem; color: var(--text-muted); text-decoration: line-through; font-weight: 500; }
+        
+        .product-desc { color: var(--text-muted); line-height: 1.7; margin-bottom: 30px; }
+
+        /* Options: Color */
+        .option-group { margin-bottom: 30px; }
+        .option-label { font-weight: 700; display: block; margin-bottom: 12px; }
+        .color-options { display: flex; gap: 15px; }
+        
+        .color-radio { display: none; }
+        .color-label {
+            width: 35px; height: 35px; border-radius: 50%; cursor: pointer;
+            box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light); /* Timbul */
+            position: relative; transition: 0.2s;
+            border: 3px solid var(--bg-color); /* Spacer ring */
+        }
+        .color-label::after {
+            content: ''; position: absolute; inset: 0; border-radius: 50%; opacity: 0.7;
+        }
+        /* Active State: Ring effect */
+        .color-radio:checked + .color-label {
+            box-shadow: inset 2px 2px 4px rgba(0,0,0,0.2); /* Pressed look */
+            transform: scale(0.95);
+            border: 2px solid var(--bg-color);
+            outline: 2px solid var(--accent-color); /* Selection Ring */
+        }
+
+        /* Quantity & Actions */
+        .action-row { display: flex; gap: 20px; align-items: center; margin-top: 40px; }
+        
+        .qty-wrapper {
+            display: flex; align-items: center; gap: 15px;
+            background: var(--bg-color); padding: 5px 10px; border-radius: 12px;
+            box-shadow: var(--neu-flat);
+        }
+        .qty-btn {
+            width: 32px; height: 32px; border-radius: 8px; border: none;
+            background: var(--bg-color); color: var(--text-main); cursor: pointer;
+            box-shadow: var(--neu-flat); font-weight: bold;
+        }
+        .qty-btn:active { box-shadow: var(--neu-pressed); }
+        .qty-input {
+            width: 40px; text-align: center; border: none; background: transparent;
+            font-weight: 700; color: var(--text-main);
+        }
+
+        .btn-add-cart {
+            flex-grow: 1; padding: 15px; border-radius: 14px;
+            background: var(--accent-color); color: white; font-weight: 700;
+            border: none; cursor: pointer; box-shadow: var(--neu-flat);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            transition: 0.2s;
+        }
+        .btn-add-cart:hover { background: #5a52d5; transform: translateY(-2px); }
+        .btn-wishlist {
+            width: 54px; height: 54px; border-radius: 14px;
+            background: var(--bg-color); color: var(--accent-color); font-size: 1.4rem;
+            border: none; cursor: pointer; box-shadow: var(--neu-flat);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .btn-wishlist:hover { color: #ff4757; transform: scale(1.05); }
+
+        /* TABS SECTION */
+        .product-tabs { margin-top: 80px; margin-bottom: 80px; }
+        .tab-nav {
+            display: flex; justify-content: center; gap: 30px; margin-bottom: 40px; border-bottom: 2px solid rgba(0,0,0,0.05); padding-bottom: 20px;
+        }
+        .tab-btn {
+            padding: 12px 30px; border-radius: 12px; border: none; background: var(--bg-color);
+            font-weight: 700; color: var(--text-muted); cursor: pointer;
+            box-shadow: var(--neu-flat); transition: 0.3s;
+        }
+        /* Active Tab is Inset/Pressed */
+        .tab-btn.active { color: var(--accent-color); box-shadow: var(--neu-pressed); }
+        
+        .tab-content { display: none; max-width: 800px; margin: 0 auto; line-height: 1.8; color: var(--text-muted); }
+        .tab-content.active { display: block; animation: fadeUp 0.5s ease; }
+
+        /* RELATED PRODUCTS */
+        .related-section h2 { text-align: center; margin-bottom: 40px; font-family: 'Plus Jakarta Sans'; }
+        .related-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;
+        }
+        /* Reusing product card styles from index but simplified */
+        .rel-card {
+            background: var(--bg-color); border-radius: var(--radius-box);
+            box-shadow: var(--neu-flat); padding: 20px; transition: 0.3s;
+        }
+        .rel-card:hover { transform: translateY(-5px); }
+        .rel-img { height: 180px; width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 15px; box-shadow: var(--neu-pressed); }
+        .rel-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* --- 5. FOOTER STYLES (COPY DARI INDEX) --- */
+        footer { padding: 60px 0 20px; box-shadow: -5px -5px 15px var(--shadow-light), 5px 5px 15px var(--shadow-dark); border-radius: 40px 40px 0 0; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-top: 40px; margin-bottom: 40px; }
+        .footer-col { margin-top: 30px;}
+        .footer-col h5 { font-family: 'Plus Jakarta Sans'; font-size: 1.1rem; margin-bottom: 20px; font-weight: 700; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: var(--text-muted); }
+        .footer-col ul li a:hover { color: var(--accent-color); padding-left: 5px; }
+        .copyright { text-align: center; color: var(--text-muted); font-size: 0.9rem; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); }
+
+        /* Animations */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .navbar-container { margin: 0; top: 0; margin-bottom: 30px; }
+            .console-nav { border-radius: 0 0 20px 20px; }
+            .mobile-toggle { display: flex; } 
+            .nav-socials a.console-btn { display: none; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--bg-color); margin-top: 15px; padding: 20px; border-radius: 0 0 20px 20px; z-index: 999; box-shadow: var(--neu-flat); }
+            .nav-links.active { display: flex; animation: slideDown 0.3s ease-out; }
+            .nav-item { text-align: center; width: 100%; box-shadow: var(--neu-flat); margin-bottom: 10px; }
+            .nav-item:active { box-shadow: var(--neu-pressed); }
+            
+            .product-detail-wrapper { grid-template-columns: 1fr; gap: 40px; }
+            .related-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-col img { margin-top: 30px;}
+        }
+        @media (max-width: 768px) {
+            .top-bar .container { flex-direction: column; gap: 5px; text-align: center; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .related-grid { grid-template-columns: 1fr; }
+            .tab-nav { flex-wrap: wrap; gap: 15px; }
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar-container">
+        <nav class="console-nav">
+            <a href="index.html" class="nav-logo">
+                <img src="https://placehold.co/150x40/E0E5EC/6C63FF?text=PurityNeu&font=montserrat" alt="Purity Logo">
+            </a>
+
+            <div class="nav-links" id="mobileMenu">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="about.html" class="nav-item">About</a>
+                <a href="products.html" class="nav-item active">Produk</a>
+                <a href="blog.html" class="nav-item">Blog</a>
+                <a href="contact.html" class="nav-item">Contact</a>
+            </div>
+
+            <div class="nav-socials">
+                <a href="#" class="console-btn"><i class="ph ph-facebook-logo"></i></a>
+                <a href="#" class="console-btn"><i class="ph ph-instagram-logo"></i></a>
+                <button class="console-btn mobile-toggle" onclick="toggleMenu()">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> <span>/</span> 
+            <a href="products.html">Produk</a> <span>/</span> 
+            Sofa Emerald Velvet
+        </div>
+
+        <div class="product-detail-wrapper">
+            
+            <div class="gallery-container">
+                <div class="main-image-frame">
+                    <img id="mainImage" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80" alt="Sofa Utama">
+                </div>
+                <div class="thumbnail-row">
+                    <button class="thumb-btn active" onclick="changeImage(this, 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80')">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=150&q=80" alt="Thumb 1">
+                    </button>
+                    <button class="thumb-btn" onclick="changeImage(this, 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=80')">
+                        <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=150&q=80" alt="Thumb 2">
+                    </button>
+                    <button class="thumb-btn" onclick="changeImage(this, 'https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=800&q=80')">
+                        <img src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=150&q=80" alt="Thumb 3">
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-info">
+                <span class="product-cat">Living Room</span>
+                <h1 class="product-title">Sofa Emerald Velvet</h1>
+                <div class="product-price">
+                    Rp 4.500.000 <span class="old-price">Rp 6.000.000</span>
+                </div>
+                <p class="product-desc">
+                    Sentuhan mewah untuk ruang tamu Anda dengan sofa velvet berkualitas tinggi. Desain ergonomis dengan busa premium yang tahan lama, dibalut kain beludru lembut yang mudah dibersihkan.
+                </p>
+
+                <div class="action-row">
+                    <button class="btn-add-cart">
+                        <i class="ph ph-whatsapp-logo"></i> Pesan Sekarang
+                    </button>
+                    
+                    <button class="btn-wishlist">
+                        <i class="ph ph-heart"></i>
+                    </button>
+                </div>
+
+                <div style="margin-top: 30px; font-size: 0.9rem; color: var(--text-muted);">
+                    <i class="ph ph-check-circle" style="color: var(--accent-color);"></i> Stok Tersedia &nbsp;&nbsp;
+                    <i class="ph ph-truck" style="color: var(--accent-color);"></i> Gratis Ongkir Jabodetabek
+                </div>
+            </div>
+        </div>
+
+        <div class="product-tabs">
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="openTab(event, 'desc')">Deskripsi</button>
+                <button class="tab-btn" onclick="openTab(event, 'spec')">Spesifikasi</button>
+                <button class="tab-btn" onclick="openTab(event, 'review')">Review (24)</button>
+            </div>
+
+            <div id="desc" class="tab-content active">
+                <p>Sofa Emerald Velvet kami dirancang dengan memadukan estetika klasik dan kenyamanan modern. Rangka kayu solid mahoni yang telah dikeringkan oven menjamin ketahanan terhadap rayap dan perubahan cuaca. Busa yang digunakan adalah High Density Foam yang tidak mudah kempes meski digunakan bertahun-tahun.</p>
+                <p>Kain velvet yang membalut sofa ini memiliki teknologi water-repellent, sehingga tumpahan air tidak langsung meresap dan mudah dibersihkan dengan lap kering.</p>
+            </div>
+            
+            <div id="spec" class="tab-content">
+                <ul style="list-style: disc; padding-left: 20px;">
+                    <li><strong>Dimensi:</strong> 220cm x 85cm x 75cm</li>
+                    <li><strong>Material Rangka:</strong> Kayu Mahoni Solid</li>
+                    <li><strong>Material Kaki:</strong> Besi coating Gold / Hitam</li>
+                    <li><strong>Bahan Kain:</strong> Premium Velvet Import</li>
+                    <li><strong>Isi Dudukan:</strong> High Density Foam + Dacron</li>
+                    <li><strong>Garansi:</strong> 2 Tahun (Rangka & Busa)</li>
+                </ul>
+            </div>
+
+            <div id="review" class="tab-content">
+                <div style="margin-bottom: 20px;">
+                    <strong>Budi Santoso</strong> <span style="color: #F59E0B;">★★★★★</span><br>
+                    <span style="font-size: 0.9rem;">"Barang sangat bagus, warnanya sesuai foto. Pengiriman juga cepat dan aman."</span>
+                </div>
+                <div>
+                    <strong>Sari Indah</strong> <span style="color: #F59E0B;">★★★★☆</span><br>
+                    <span style="font-size: 0.9rem;">"Sofanya empuk banget, pas buat nonton netflix seharian. Recommended!"</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="related-section">
+            <h2>Produk Sejenis</h2>
+            <div class="related-grid">
+                <div class="rel-card">
+                    <div class="rel-img">
+                        <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&w=600&q=80" alt="Meja">
+                    </div>
+                    <div style="font-weight: 700; margin-bottom: 5px;">Meja Kopi Jati</div>
+                    <div style="color: var(--accent-color); font-weight: 800;">Rp 1.800.000</div>
+                </div>
+                <div class="rel-card">
+                    <div class="rel-img">
+                        <img src="https://images.unsplash.com/photo-1505693416388-b0346ef12494?auto=format&fit=crop&w=600&q=80" alt="Lampu">
+                    </div>
+                    <div style="font-weight: 700; margin-bottom: 5px;">Standing Lamp</div>
+                    <div style="color: var(--accent-color); font-weight: 800;">Rp 950.000</div>
+                </div>
+                 <div class="rel-card">
+                    <div class="rel-img">
+                        <img src="https://images.unsplash.com/photo-1601084881623-ca2893f45f44?auto=format&fit=crop&w=600&q=80" alt="TV">
+                    </div>
+                    <div style="font-weight: 700; margin-bottom: 5px;">Rak TV Modern</div>
+                    <div style="color: var(--accent-color); font-weight: 800;">Rp 2.100.000</div>
+                </div>
+                 <div class="rel-card">
+                    <div class="rel-img">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80" alt="Kursi">
+                    </div>
+                    <div style="font-weight: 700; margin-bottom: 5px;">Armchair Grey</div>
+                    <div style="color: var(--accent-color); font-weight: 800;">Rp 1.500.000</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo-container" style="display: block; margin-bottom: 15px;">
+                     <img src="https://placehold.co/150x40/E0E5EC/6C63FF?text=LOGO&font=montserrat" alt="Logo Purity" style="height: 40px;">
+                </a>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    Kami menyediakan furniture berkualitas tinggi dengan desain modern yang mengutamakan kenyamanan dan estetika visual.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h5>Menu</h5>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Produk</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Bantuan</h5>
+                <ul>
+                    <li><a href="#">Cara Pemesanan</a></li>
+                    <li><a href="#">Konfirmasi Pembayaran</a></li>
+                    <li><a href="#">Status Pengiriman</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Ikuti Kami</h5>
+                <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem;">Dapatkan update terbaru di sosial media kami.</p>
+                <div style="display: flex; gap: 10px;">
+                    <a href="#" class="social-btn fb"><i class="ph ph-facebook-logo"></i></a>
+                    <a href="#" class="social-btn ig"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#" class="social-btn yt"><i class="ph ph-youtube-logo"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2024 Purity Neumorph Theme. Desain Asli dengan Sentuhan Modern.
+        </div>
+    </footer>
+
+    <script>
+        // 1. Mobile Menu
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        // 2. Image Gallery Logic
+        function changeImage(element, src) {
+            // Ganti gambar utama
+            document.getElementById('mainImage').src = src;
+            
+            // Atur active state thumbnail
+            document.querySelectorAll('.thumb-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // 3. Quantity Logic
+        function updateQty(change) {
+            const input = document.getElementById('qtyInput');
+            let val = parseInt(input.value);
+            val += change;
+            if (val < 1) val = 1;
+            input.value = val;
+        }
+
+        // 4. Tab Logic
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            // Sembunyikan semua konten
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove('active');
+            }
+
+            // Hapus class active dari tombol
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove('active');
+            }
+
+            // Tampilkan tab yang dipilih
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>

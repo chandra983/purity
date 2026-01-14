@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Tips Menata Ruang Tamu Kecil - Blog Purity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* --- 1. CONFIG & VARIABLES --- */
+        :root {
+            --bg-color: #E0E5EC;
+            --text-main: #2D3748;
+            --text-muted: #718096;
+            --accent-color: #6C63FF; 
+            
+            /* Neumorphism Physics */
+            --shadow-light: rgba(255, 255, 255, 0.60);
+            --shadow-dark: rgba(163, 177, 198, 0.60);
+            
+            --neu-flat: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
+            --neu-flat-hover: 12px 12px 20px rgba(163, 177, 198, 0.7), -12px -12px 20px rgba(255, 255, 255, 0.7);
+            --neu-pressed: inset 6px 6px 10px var(--shadow-dark), inset -6px -6px 10px var(--shadow-light);
+            --neu-icon: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+            
+            --radius-box: 24px;
+            --radius-btn: 12px;
+        }
+
+        /* --- 2. RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { display: block; max-width: 100%; }
+        
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- 3. NAVBAR STYLES (COPY DARI INDEX) --- */
+        .navbar-container { position: sticky; top: 20px; z-index: 1000; margin: 0 20px 40px 20px; }
+        .console-nav { display: flex; justify-content: space-between; align-items: center; background-color: var(--bg-color); padding: 15px 30px; border-radius: 20px; box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light); border: 1px solid rgba(255,255,255,0.2); position: relative; }
+        .nav-logo img { height: 40px; border-radius: 20px; filter: drop-shadow(2px 2px 4px rgba(163, 177, 198, 0.4)); }
+        .nav-links { display: flex; gap: 15px; background: var(--bg-color); padding: 8px; border-radius: 16px; box-shadow: var(--neu-pressed); }
+        .nav-item { padding: 10px 20px; border-radius: 12px; font-weight: 700; color: var(--text-muted); font-size: 0.9rem; transition: all 0.3s ease; }
+        .nav-item:hover, .nav-item.active { color: var(--accent-color); box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light); transform: translateY(-1px); }
+        .nav-socials { display: flex; gap: 12px; }
+        .console-btn { width: 42px; height: 42px; border-radius: 12px; background: var(--bg-color); display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 1.2rem; box-shadow: var(--neu-flat); border: none; cursor: pointer; transition: all 0.3s; }
+        .console-btn:hover { color: var(--accent-color); transform: scale(1.1); box-shadow: var(--neu-flat-hover); }
+        .mobile-toggle { display: none; }
+
+        /* --- 4. BLOG LAYOUT GRID --- */
+        .blog-layout {
+            display: grid;
+            grid-template-columns: 1fr 320px; /* Konten Kiri (Lebar) | Sidebar Kanan (Sempit) */
+            gap: 50px;
+            margin-bottom: 80px;
+            /* REVISI PENTING: Hapus align-items: start agar kolom tingginya sama rata */
+        }
+
+        /* HEADER AREA (Full Width di atas kolom) */
+        .article-header { text-align: center; margin-bottom: 50px; margin-top: 40px; grid-column: 1 / -1; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .article-meta { color: var(--accent-color); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 15px; display: inline-block; }
+        .article-title { font-family: 'Plus Jakarta Sans'; font-size: 3rem; line-height: 1.1; font-weight: 800; margin-bottom: 20px; }
+        .article-date { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* MAIN CONTENT AREA */
+        .main-image-box {
+            padding: 15px; background: var(--bg-color); border-radius: var(--radius-box);
+            box-shadow: var(--neu-flat); margin-bottom: 10px;
+        }
+        .main-image-box img { border-radius: 16px; width: 100%; height: auto; box-shadow: inset 6px 6px 10px var(--shadow-dark), inset -6px -6px 10px var(--shadow-light); }
+        .image-caption { text-align: center; font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin-bottom: 40px; display: block; margin-top: 10px; }
+
+        .article-content { color: var(--text-main); font-size: 1.05rem; }
+        /* Scroll margin top agar judul tidak ketutup navbar saat diklik di TOC */
+        .article-content h2 { font-family: 'Plus Jakarta Sans'; font-size: 1.8rem; font-weight: 800; margin-top: 50px; margin-bottom: 20px; color: var(--text-main); scroll-margin-top: 140px; }
+        .article-content h3 { font-family: 'Plus Jakarta Sans'; font-size: 1.4rem; font-weight: 700; margin-top: 30px; margin-bottom: 15px; color: var(--text-main); scroll-margin-top: 140px; }
+        .article-content p { margin-bottom: 25px; }
+
+        /* --- SIDEBAR STYLES (REVISI STICKY) --- */
+        .blog-sidebar {
+            /* Area sidebar ini akan merentang setinggi artikel utama */
+            position: relative;
+        }
+        
+        /* Wadah Sticky yang akan melayang */
+        .sidebar-sticky {
+            position: -webkit-sticky; /* Support Safari */
+            position: sticky;
+            top: 120px; /* Jarak dari atas layar saat scroll */
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar-widget {
+            background: var(--bg-color);
+            border-radius: var(--radius-box);
+            padding: 25px;
+            box-shadow: var(--neu-flat);
+        }
+
+        .widget-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 20px; padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0,0,0,0.05);
+        }
+
+        .widget-title {
+            font-family: 'Plus Jakarta Sans'; font-weight: 800; font-size: 1.1rem;
+            margin: 0; color: var(--text-main);
+        }
+        
+        .widget-toggle {
+            font-size: 0.8rem; color: var(--accent-color); font-weight: 700; cursor: pointer;
+        }
+
+        /* TOC Widget */
+        .toc-list { list-style: none; padding: 0; margin: 0; transition: 0.3s; }
+        .toc-list.collapsed { display: none; }
+        .toc-list.expanded { display: block; animation: slideDown 0.3s ease; }
+
+        .toc-list li { margin-bottom: 12px; position: relative; padding-left: 15px; }
+        .toc-list li::before { 
+            content: ''; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; 
+            border-radius: 50%; background: var(--text-muted); 
+        }
+        .toc-list li a { 
+            font-size: 0.95rem; color: var(--text-muted); font-weight: 500; display: block;
+            transition: 0.2s;
+        }
+        .toc-list li a:hover { color: var(--accent-color); transform: translateX(3px); }
+        .toc-list li.active::before { background: var(--accent-color); }
+        .toc-list li.active a { color: var(--accent-color); font-weight: 700; }
+        
+        /* Search Widget */
+        .search-group { position: relative; }
+        .sidebar-search {
+            width: 100%; padding: 12px 15px; padding-right: 40px;
+            border-radius: 12px; border: none; background: var(--bg-color);
+            box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+            outline: none; font-size: 0.9rem;
+        }
+        .sidebar-search-icon { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--accent-color); }
+
+        /* Tags Widget */
+        .tags-wrapper { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag-pill {
+            font-size: 0.8rem; padding: 6px 12px; border-radius: 8px;
+            background: var(--bg-color); box-shadow: var(--neu-flat);
+            color: var(--text-muted); font-weight: 600; cursor: pointer; transition: 0.2s;
+        }
+        .tag-pill:hover { box-shadow: var(--neu-flat-hover); color: var(--accent-color); }
+
+        /* --- CONTENT COMPONENTS --- */
+        .read-also-box {
+            background: var(--bg-color); border-radius: 16px; padding: 25px;
+            box-shadow: var(--neu-flat); margin: 40px 0; border-left: 5px solid var(--accent-color);
+        }
+        .read-also-title { font-weight: 700; display: block; margin-bottom: 10px; color: var(--text-muted); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        .read-also-link { font-weight: 700; color: var(--text-main); font-size: 1.1rem; display: block; margin-bottom: 5px; }
+        .read-also-link:hover { color: var(--accent-color); padding-left: 5px; }
+
+        blockquote {
+            background: var(--bg-color); border-radius: 20px; padding: 40px;
+            box-shadow: inset 6px 6px 10px var(--shadow-dark), inset -6px -6px 10px var(--shadow-light);
+            margin: 40px 0; font-family: 'Plus Jakarta Sans'; font-weight: 600; font-size: 1.2rem;
+            color: var(--text-main); line-height: 1.6; position: relative; text-align: center; font-style: italic;
+        }
+
+        .promo-gif-container {
+            margin: 50px 0; text-align: center; padding: 10px;
+            border-radius: var(--radius-box); box-shadow: var(--neu-flat);
+        }
+        .promo-gif-container img { width: 100%; border-radius: 16px; }
+
+        .faq-section { margin-top: 60px; margin-bottom: 40px; }
+        .faq-item { margin-bottom: 20px; }
+        .faq-question {
+            width: 100%; padding: 20px; text-align: left; background: var(--bg-color);
+            border: none; border-radius: 16px; box-shadow: var(--neu-flat);
+            font-weight: 700; font-size: 1rem; color: var(--text-main); cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center; transition: 0.2s;
+        }
+        .faq-question:hover { color: var(--accent-color); transform: translateY(-2px); }
+        .faq-answer {
+            padding: 20px; color: var(--text-muted); display: none;
+            background: var(--bg-color); margin-top: -10px; padding-top: 30px;
+            border-radius: 0 0 16px 16px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+        }
+        .faq-item.active .faq-answer { display: block; animation: slideDown 0.3s ease; }
+        .faq-item.active .faq-question { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); color: var(--accent-color); border-radius: 16px 16px 0 0; }
+
+        .share-container {
+            display: flex; gap: 15px; margin: 50px 0; align-items: center; justify-content: center;
+        }
+        .share-btn {
+            width: 50px; height: 50px; border-radius: 50%; background: var(--bg-color);
+            display: flex; align-items: center; justify-content: center; color: var(--text-muted);
+            box-shadow: var(--neu-flat); font-size: 1.3rem; transition: 0.2s; cursor: pointer;
+        }
+        .share-btn:hover { color: var(--accent-color); transform: translateY(-3px); box-shadow: var(--neu-flat-hover); }
+
+        .author-box {
+            background: var(--bg-color); padding: 30px; border-radius: var(--radius-box);
+            box-shadow: var(--neu-flat); display: flex; align-items: center; gap: 25px;
+            margin-bottom: 80px; border-top: 4px solid var(--accent-color);
+        }
+        .author-img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); border: 3px solid var(--bg-color); }
+
+        .related-section { background-color: var(--bg-color); padding-top: 40px; border-top: 2px solid rgba(0,0,0,0.03); }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .card-rel {
+            background: var(--bg-color); border-radius: var(--radius-box);
+            box-shadow: var(--neu-flat); padding: 20px; transition: 0.3s; display: flex; flex-direction: column;
+        }
+        .card-rel:hover { transform: translateY(-5px); }
+        .card-img { height: 180px; width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 15px; box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; }
+        .btn-read {
+            text-align: center; padding: 10px; border-radius: 10px; margin-top: auto;
+            background: var(--bg-color); color: var(--accent-color); font-weight: 700; font-size: 0.9rem;
+            box-shadow: var(--neu-flat); cursor: pointer; transition: 0.2s;
+        }
+        .btn-read:hover { background: var(--accent-color); color: white; }
+
+        /* FOOTER */
+        footer { padding: 60px 0 20px; box-shadow: -5px -5px 15px var(--shadow-light), 5px 5px 15px var(--shadow-dark); border-radius: 40px 40px 0 0; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-top: 40px; margin-bottom: 40px; }
+        .footer-col { margin-top: 30px;}
+        .footer-col h5 { font-family: 'Plus Jakarta Sans'; font-size: 1.1rem; margin-bottom: 20px; font-weight: 700; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: var(--text-muted); }
+        .footer-col ul li a:hover { color: var(--accent-color); padding-left: 5px; }
+        .copyright { text-align: center; color: var(--text-muted); font-size: 0.9rem; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); }
+
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- RESPONSIVE LOGIC --- */
+        @media (max-width: 992px) {
+            .navbar-container { margin: 0; top: 0; margin-bottom: 30px; }
+            .console-nav { border-radius: 0 0 20px 20px; }
+            .mobile-toggle { display: flex; } 
+            .nav-socials a.console-btn { display: none; }
+            
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--bg-color); margin-top: 15px; padding: 20px; border-radius: 0 0 20px 20px; z-index: 999; box-shadow: var(--neu-flat); }
+            .nav-links.active { display: flex; animation: slideDown 0.3s ease-out; }
+            .nav-item { text-align: center; width: 100%; box-shadow: var(--neu-flat); margin-bottom: 10px; }
+            .nav-item:active { box-shadow: var(--neu-pressed); }
+            
+            /* REORDERING UNTUK MOBILE */
+            .blog-layout { 
+                grid-template-columns: 1fr; /* Jadi 1 Kolom */
+                display: flex;
+                flex-direction: column; 
+            }
+            
+            /* Sidebar Pindah ke Atas */
+            .blog-sidebar {
+                order: -1; /* Sidebar muncul SEBELUM artikel utama */
+                margin-bottom: 20px;
+                width: 100%;
+            }
+
+            /* Matikan Sticky di Mobile agar tidak mengganggu scroll */
+            .sidebar-sticky { position: static; gap: 20px; }
+            
+            .article-title { font-size: 2rem; }
+            .related-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-col { margin-top: 1px;}
+            .footer-col img { margin-top: 30px;}
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar-container">
+        <nav class="console-nav">
+            <a href="index.html" class="nav-logo">
+                <img src="https://placehold.co/150x40/E0E5EC/6C63FF?text=PurityNeu&font=montserrat" alt="Purity Logo">
+            </a>
+            <div class="nav-links" id="mobileMenu">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="about.html" class="nav-item">About</a>
+                <a href="products.html" class="nav-item">Produk</a>
+                <a href="blog.html" class="nav-item active">Blog</a>
+                <a href="contact.html" class="nav-item">Contact</a>
+            </div>
+            <div class="nav-socials">
+                <a href="#" class="console-btn"><i class="ph ph-facebook-logo"></i></a>
+                <a href="#" class="console-btn"><i class="ph ph-instagram-logo"></i></a>
+                <button class="console-btn mobile-toggle" onclick="toggleMenu()">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <header class="article-header">
+            <div class="article-meta">TIPS INTERIOR &bull; 14 JAN 2026</div>
+            <h1 class="article-title">5 Tips Menata Ruang Tamu Kecil Agar Terasa Luas dan Mewah</h1>
+            <div class="article-date">Ditulis oleh <strong>Siti Aminah</strong> &bull; Estimasi baca 5 menit</div>
+        </header>
+    </div>
+
+    <div class="container blog-layout">
+        
+        <main class="blog-main">
+            <figure class="main-image-box">
+                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=80" alt="Ruang tamu minimalis">
+            </figure>
+            <span class="image-caption">Gambar 1: Ruang tamu minimalis dengan pencahayaan alami yang maksimal.</span>
+
+            <div class="article-content">
+                <p>Memiliki ruang tamu dengan luas terbatas seringkali menjadi tantangan tersendiri bagi pemilik rumah minimalis. Namun, ukuran bukanlah penghalang untuk menciptakan area yang nyaman dan estetis. Dengan teknik penataan yang tepat, ruangan sempit bisa terasa dua kali lebih lega.</p>
+
+                <h2>1. Pilih Palet Warna Netral dan Terang</h2>
+                <p>Warna adalah kunci utama manipulasi visual. Warna-warna seperti putih, krem, abu-abu muda, atau pastel memantulkan cahaya lebih baik daripada warna gelap. Ini membuat dinding seolah 'mundur' dan menjauh, menciptakan kesan ruang yang terbuka.</p>
+                
+                <div class="read-also-box">
+                    <span class="read-also-title">Baca Juga:</span>
+                    <a href="#" class="read-also-link">Tren Warna Furniture Tahun 2026: Earth Tone Dominan</a>
+                    <a href="#" class="read-also-link">Inspirasi Dapur Minimalis Modern untuk Rumah Tipe 36</a>
+                </div>
+
+                <h2>2. Gunakan Furniture Multifungsi</h2>
+                <p>Di ruang kecil, setiap inci sangat berharga. Hindari perabotan yang hanya memiliki satu fungsi. Pilihlah furniture pintar seperti:</p>
+                <ul>
+                    <li><strong>Sofa Bed:</strong> Bisa untuk duduk tamu dan tidur jika ada kerabat menginap.</li>
+                    <li><strong>Coffee Table dengan Storage:</strong> Meja tamu yang memiliki laci penyimpanan di bawahnya untuk menyimpan majalah atau remote TV.</li>
+                    <li><strong>Ottoman:</strong> Bisa jadi sandaran kaki, tempat duduk tambahan, atau meja sisi.</li>
+                </ul>
+
+                <blockquote>
+                    "Desain minimalis bukan tentang membuang barang yang Anda sukai, tetapi tentang memastikan setiap barang memiliki tujuan dan tempatnya sendiri."
+                </blockquote>
+
+                <h2>3. Manfaatkan Cermin Besar</h2>
+                <p>Ini adalah trik klasik desainer interior. Menempatkan cermin besar di salah satu sisi dinding akan memantulkan cahaya dan bayangan ruangan, menciptakan ilusi optik seolah-olah ada ruangan lain di baliknya.</p>
+
+                <figure class="main-image-box" style="margin: 40px 0;">
+                    <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=800&q=80" alt="Cermin besar">
+                </figure>
+                <span class="image-caption">Gambar 2: Penempatan cermin bulat besar memantulkan cahaya alami dari jendela.</span>
+
+                <h2>4. Pencahayaan Layering (Berlapis)</h2>
+                <p>Jangan hanya mengandalkan satu lampu plafon di tengah ruangan. Pencahayaan yang datar membuat ruangan terasa sempit dan membosankan. Gunakan teknik <em>layering</em>:</p>
+                <h3>A. Ambient Light</h3>
+                <p>Cahaya utama untuk menerangi seluruh ruangan secara merata.</p>
+                <h3>B. Task Light</h3>
+                <p>Lampu untuk aktivitas spesifik, misalnya lampu baca di samping sofa.</p>
+                <h3>C. Accent Light</h3>
+                <p>Lampu sorot untuk menonjolkan lukisan atau tekstur dinding.</p>
+
+                <div class="promo-gif-container">
+                    <h4 style="margin-bottom: 15px; font-family:'Plus Jakarta Sans'; font-weight:800;">Upgrade Ruang Tamu Anda Sekarang!</h4>
+                    <img src="https://media.giphy.com/media/l41Yh17i97zWf00mY/giphy.gif" alt="Interior Design Animation">
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-muted);">Dapatkan diskon 20% untuk pembelian Sofa Bed Purity hari ini.</p>
+                    <a href="products.html" class="btn-read" style="display:inline-block; margin-top:10px;">Lihat Katalog</a>
+                </div>
+
+                <h2>5. Gantung Gorden Tinggi-Tinggi</h2>
+                <p>Pasang batang gorden (curtain rod) setinggi mungkin, mendekati plafon, dan biarkan kain gorden menjuntai hingga menyentuh lantai. Trik vertikal ini akan memandu mata ke atas, membuat plafon rumah Anda terasa lebih tinggi dari aslinya.</p>
+
+                <div class="faq-section">
+                    <h2 style="margin-top:0;">Pertanyaan Umum (FAQ)</h2>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            Apakah warna gelap dilarang untuk ruang kecil?
+                            <i class="ph ph-caret-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            Tidak dilarang, tetapi harus hati-hati. Gunakan warna gelap sebagai aksen atau pada satu dinding saja (accent wall) untuk memberikan kedalaman tanpa membuat ruangan terasa sesak.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            Berapa ukuran karpet yang ideal?
+                            <i class="ph ph-caret-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            Pilih karpet yang cukup besar sehingga minimal kaki depan sofa dan kursi berada di atas karpet. Karpet yang terlalu kecil justru membuat ruangan terlihat terkotak-kotak.
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Kesimpulan</h2>
+                <p>Menata ruang tamu kecil membutuhkan kreativitas dan pemilihan perabotan yang cerdas. Dengan menerapkan 5 tips di atas—mulai dari pemilihan warna hingga pencahayaan—Anda bisa menyulap ruangan sempit menjadi area favorit keluarga yang nyaman dan Instagramable. Selamat mencoba!</p>
+
+                <div class="share-container">
+                    <span style="font-weight: 700;">Bagikan:</span>
+                    <div class="share-btn" onclick="shareTo('wa')"><i class="ph ph-whatsapp-logo"></i></div>
+                    <div class="share-btn" onclick="shareTo('fb')"><i class="ph ph-facebook-logo"></i></div>
+                    <div class="share-btn" onclick="shareTo('tw')"><i class="ph ph-twitter-logo"></i></div>
+                    <div class="share-btn" onclick="copyLink()"><i class="ph ph-link"></i></div>
+                </div>
+
+                <div class="author-box">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Siti Aminah" class="author-img">
+                    <div class="author-info">
+                        <h4>Siti Aminah</h4>
+                        <p>Lead Interior Designer di Purity Neumorph. Berpengalaman 10 tahun menyulap ruang sempit menjadi hunian fungsional. Pecinta kopi dan tanaman monstera.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="blog-sidebar">
+            <div class="sidebar-sticky">
+                
+                
+
+                <div class="sidebar-widget">
+                    <div class="widget-header">
+                        <h4 class="widget-title" style="border:none; margin:0;">Daftar Isi</h4>
+                        <span class="widget-toggle" id="tocToggleBtn" onclick="toggleTOCWidget()">[Tutup]</span>
+                    </div>
+                    <ul class="toc-list expanded" id="tocList">
+                        </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h4 class="widget-title">Topik Populer</h4>
+                    <div class="tags-wrapper">
+                        <span class="tag-pill">Interior</span>
+                        <span class="tag-pill">Minimalis</span>
+                        <span class="tag-pill">Tips</span>
+                        <span class="tag-pill">Dekorasi</span>
+                        <span class="tag-pill">DIY</span>
+                        <span class="tag-pill">Ruang Tamu</span>
+                    </div>
+                </div>
+
+            </div>
+        </aside>
+
+    </div>
+
+    <section class="container related-section">
+        <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Artikel Terkait</h2>
+        <div class="related-grid">
+            <div class="card-rel">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80" alt="Trend Warna">
+                </div>
+                <h3 class="card-title">Tren Warna Furniture 2026</h3>
+                <p class="card-desc">Warna earth tone dan pastel mendominasi tahun ini. Lihat panduannya.</p>
+                <a href="#" class="btn-read">Baca Selengkapnya</a>
+            </div>
+            <div class="card-rel">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=600&q=80" alt="Kursi Kerja">
+                </div>
+                <h3 class="card-title">Memilih Kursi Kerja Ergonomis</h3>
+                <p class="card-desc">Tips memilih kursi agar punggung tidak sakit saat WFH.</p>
+                <a href="#" class="btn-read">Baca Selengkapnya</a>
+            </div>
+            <div class="card-rel">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80" alt="Dapur">
+                </div>
+                <h3 class="card-title">Inspirasi Dapur Minimalis</h3>
+                <p class="card-desc">Ubah dapur kecil menjadi area memasak yang estetik dan bersih.</p>
+                <a href="#" class="btn-read">Baca Selengkapnya</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo-container" style="display: block; margin-bottom: 15px;">
+                     <img src="https://placehold.co/150x40/E0E5EC/6C63FF?text=LOGO&font=montserrat" alt="Logo Purity" style="height: 40px;">
+                </a>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    Kami menyediakan furniture berkualitas tinggi dengan desain modern yang mengutamakan kenyamanan dan estetika visual.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h5>Menu</h5>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Produk</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Bantuan</h5>
+                <ul>
+                    <li><a href="#">Cara Pemesanan</a></li>
+                    <li><a href="#">Konfirmasi Pembayaran</a></li>
+                    <li><a href="#">Status Pengiriman</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Ikuti Kami</h5>
+                <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem;">Dapatkan update terbaru di sosial media kami.</p>
+                <div style="display: flex; gap: 10px;">
+                    <a href="#" class="social-btn fb"><i class="ph ph-facebook-logo"></i></a>
+                    <a href="#" class="social-btn ig"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#" class="social-btn yt"><i class="ph ph-youtube-logo"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Purity Neumorph Theme. Desain Asli dengan Sentuhan Modern.
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        // Auto TOC Generation & Scroll Active State
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocList = document.getElementById('tocList');
+            const headers = document.querySelectorAll('.article-content h2, .article-content h3');
+            
+            headers.forEach((header, index) => {
+                const id = header.id || 'section-' + index;
+                header.id = id;
+
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = header.textContent;
+                a.dataset.target = id;
+
+                if (header.tagName === 'H3') li.style.paddingLeft = '15px';
+
+                a.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.getElementById(id);
+                    window.scrollTo({
+                        top: target.offsetTop - 140, 
+                        behavior: 'smooth'
+                    });
+                });
+
+                li.appendChild(a);
+                tocList.appendChild(li);
+            });
+
+            // Scroll Spy Logic
+            window.addEventListener('scroll', () => {
+                let current = '';
+                headers.forEach(header => {
+                    const sectionTop = header.offsetTop;
+                    if (pageYOffset >= sectionTop - 150) {
+                        current = header.getAttribute('id');
+                    }
+                });
+
+                document.querySelectorAll('.toc-list li').forEach(li => {
+                    li.classList.remove('active');
+                    const link = li.querySelector('a');
+                    if (link.dataset.target === current) {
+                        li.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Buka Tutup TOC
+        function toggleTOCWidget() {
+            const list = document.getElementById('tocList');
+            const btn = document.getElementById('tocToggleBtn');
+            if (list.classList.contains('expanded')) {
+                list.classList.remove('expanded');
+                list.classList.add('collapsed');
+                btn.textContent = '[Buka]';
+            } else {
+                list.classList.remove('collapsed');
+                list.classList.add('expanded');
+                btn.textContent = '[Tutup]';
+            }
+        }
+
+        function toggleFAQ(button) {
+            const item = button.parentElement;
+            document.querySelectorAll('.faq-item').forEach(el => {
+                if(el !== item) el.classList.remove('active');
+            });
+            item.classList.toggle('active');
+        }
+
+        function shareTo(platform) {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            let shareUrl = '';
+
+            if (platform === 'wa') shareUrl = `https://wa.me/?text=${title}%20${url}`;
+            else if (platform === 'fb') shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            else if (platform === 'tw') shareUrl = `https://twitter.com/intent/tweet?text=${title}&url=${url}`;
+
+            window.open(shareUrl, '_blank');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href);
+            alert('Link artikel berhasil disalin!');
+        }
+    </script>
+</body>
+</html>

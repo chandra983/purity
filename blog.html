@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Artikel - Purity Neumorph</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* --- 1. CONFIG & VARIABLES (SAMA SEPERTI INDEX) --- */
+        :root {
+            --bg-color: #E0E5EC;
+            --text-main: #2D3748;
+            --text-muted: #718096;
+            --accent-color: #6C63FF; 
+            
+            --shadow-light: rgba(255, 255, 255, 0.60);
+            --shadow-dark: rgba(163, 177, 198, 0.60);
+            
+            --neu-flat: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
+            --neu-flat-hover: 12px 12px 20px rgba(163, 177, 198, 0.7), -12px -12px 20px rgba(255, 255, 255, 0.7);
+            --neu-pressed: inset 6px 6px 10px var(--shadow-dark), inset -6px -6px 10px var(--shadow-light);
+            --neu-icon: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+            
+            --radius-box: 24px;
+            --radius-btn: 12px;
+        }
+
+        /* --- 2. RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { display: block; max-width: 100%; }
+        
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- 3. NAVBAR STYLES (COPY DARI INDEX) --- */
+        .navbar-container { position: sticky; top: 20px; z-index: 1000; margin: 0 20px 40px 20px; }
+        .console-nav { display: flex; justify-content: space-between; align-items: center; background-color: var(--bg-color); padding: 15px 30px; border-radius: 20px; box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light); border: 1px solid rgba(255,255,255,0.2); position: relative; }
+        .nav-logo img { height: 40px; border-radius: 20px; filter: drop-shadow(2px 2px 4px rgba(163, 177, 198, 0.4)); }
+        .nav-links { display: flex; gap: 15px; background: var(--bg-color); padding: 8px; border-radius: 16px; box-shadow: var(--neu-pressed); }
+        .nav-item { padding: 10px 20px; border-radius: 12px; font-weight: 700; color: var(--text-muted); font-size: 0.9rem; transition: all 0.3s ease; }
+        .nav-item:hover, .nav-item.active { color: var(--accent-color); box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light); transform: translateY(-1px); }
+        .nav-socials { display: flex; gap: 12px; }
+        .console-btn { width: 42px; height: 42px; border-radius: 12px; background: var(--bg-color); display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 1.2rem; box-shadow: var(--neu-flat); border: none; cursor: pointer; transition: all 0.3s; }
+        .console-btn:hover { color: var(--accent-color); transform: scale(1.1); box-shadow: var(--neu-flat-hover); }
+        .mobile-toggle { display: none; }
+
+        /* --- 4. BLOG SPECIFIC STYLES --- */
+        
+        .blog-header { text-align: center; margin-bottom: 50px; margin-top: 40px; }
+        .blog-header h1 { font-family: 'Plus Jakarta Sans'; font-weight: 800; font-size: 2.5rem; margin-bottom: 10px; }
+        .blog-header p { color: var(--text-muted); }
+
+        /* Search Bar Neumorphism */
+        .search-wrapper {
+            max-width: 600px; margin: 0 auto 60px; position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 18px 25px; padding-right: 60px;
+            border-radius: 50px;
+            background: var(--bg-color);
+            border: none;
+            box-shadow: var(--neu-pressed); /* Inset shadow */
+            font-family: 'DM Sans'; font-size: 1rem; color: var(--text-main);
+            outline: none; transition: 0.3s;
+        }
+        .search-input:focus { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light), 0 0 0 2px var(--accent-color); }
+        .search-icon {
+            position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+            color: var(--accent-color); font-size: 1.5rem; pointer-events: none;
+        }
+
+        /* Blog Grid */
+        .blog-list-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+            min-height: 400px; /* Prevent collapse when empty */
+        }
+        
+        /* Blog Card Styles */
+        .article-card {
+            background: var(--bg-color); border-radius: var(--radius-box);
+            box-shadow: var(--neu-flat); padding: 20px;
+            display: flex; flex-direction: column;
+            transition: 0.3s; animation: fadeUp 0.5s ease forwards;
+        }
+        .article-card:hover { transform: translateY(-5px); box-shadow: var(--neu-flat-hover); }
+        
+        .article-img {
+            height: 200px; width: 100%; border-radius: 16px; margin-bottom: 20px;
+            overflow: hidden; box-shadow: var(--neu-pressed); background: #dbe0e9;
+        }
+        .article-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .article-card:hover .article-img img { transform: scale(1.05); }
+
+        .article-meta { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .article-title { font-family: 'Plus Jakarta Sans'; font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; line-height: 1.3; color: var(--text-main); }
+        .article-excerpt { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        
+        .read-more-btn {
+            color: var(--accent-color); font-weight: 700; font-size: 0.9rem;
+            display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
+        }
+        .read-more-btn:hover { text-decoration: underline; gap: 8px; }
+
+        /* Pagination */
+        .pagination-container {
+            display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 80px;
+        }
+        .page-btn {
+            width: 45px; height: 45px; border-radius: 12px;
+            background: var(--bg-color); border: none;
+            box-shadow: var(--neu-flat);
+            color: var(--text-muted); font-weight: 700; font-size: 1rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: 0.2s;
+        }
+        .page-btn:hover:not(:disabled) { color: var(--accent-color); box-shadow: var(--neu-flat-hover); }
+        
+        /* Active Page (Pressed state) */
+        .page-btn.active {
+            color: var(--accent-color); box-shadow: var(--neu-pressed); pointer-events: none;
+        }
+        /* Disabled Button */
+        .page-btn:disabled {
+            opacity: 0.5; cursor: not-allowed; box-shadow: none; border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* Not Found Message */
+        .no-result {
+            grid-column: 1 / -1; text-align: center; padding: 50px;
+            color: var(--text-muted); font-size: 1.2rem;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 5. FOOTER STYLES (COPY DARI INDEX) --- */
+        footer { padding: 60px 0 20px; box-shadow: -5px -5px 15px var(--shadow-light), 5px 5px 15px var(--shadow-dark); border-radius: 40px 40px 0 0; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-top: 40px; margin-bottom: 40px; }
+        .footer-col { margin-top: 30px;}
+        .footer-col h5 { font-family: 'Plus Jakarta Sans'; font-size: 1.1rem; margin-bottom: 20px; font-weight: 700; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: var(--text-muted); }
+        .footer-col ul li a:hover { color: var(--accent-color); padding-left: 5px; }
+        .copyright { text-align: center; color: var(--text-muted); font-size: 0.9rem; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .navbar-container { margin: 0; top: 0; margin-bottom: 30px; }
+            .console-nav { border-radius: 0 0 20px 20px; }
+            .mobile-toggle { display: flex; } 
+            .nav-socials a.console-btn { display: none; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--bg-color); margin-top: 15px; padding: 20px; border-radius: 0 0 20px 20px; z-index: 999; box-shadow: var(--neu-flat); }
+            .nav-links.active { display: flex; animation: slideDown 0.3s ease-out; }
+            .nav-item { text-align: center; width: 100%; box-shadow: var(--neu-flat); margin-bottom: 10px; }
+            .nav-item:active { box-shadow: var(--neu-pressed); }
+            
+            .blog-list-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-col img { margin-top: 30px;}
+        }
+        @media (max-width: 768px) {
+            .top-bar .container { flex-direction: column; gap: 5px; text-align: center; }
+            .blog-list-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar-container">
+        <nav class="console-nav">
+            <a href="index.html" class="nav-logo">
+                <img src="https://placehold.co/150x40/E0E5EC/6C63FF?text=PurityNeu&font=montserrat" alt="Purity Logo">
+            </a>
+
+            <div class="nav-links" id="mobileMenu">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="about.html" class="nav-item">About</a>
+                <a href="products.html" class="nav-item">Produk</a>
+                <a href="blog.html" class="nav-item active">Blog</a> 
+                <a href="contact.html" class="nav-item">Contact</a>
+            </div>
+
+            <div class="nav-socials">
+                <a href="#" class="console-btn"><i class="ph ph-facebook-logo"></i></a>
+                <a href="#" class="console-btn"><i class="ph ph-instagram-logo"></i></a>
+                <button class="console-btn mobile-toggle" onclick="toggleMenu()">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        
+        <div class="blog-header">
+            <h1>Jurnal & Inspirasi</h1>
+            <p>Tips interior, tren desain terbaru, dan berita seputar Purity Neumorph.</p>
+        </div>
+
+        <div class="search-wrapper">
+            <input type="text" class="search-input" id="searchInput" placeholder="Cari artikel (misal: Tips, Warna, Minimalis)...">
+            <i class="ph ph-magnifying-glass search-icon"></i>
+        </div>
+
+        <div class="blog-list-grid" id="blogGrid">
+            </div>
+
+        <div class="pagination-container">
+            <button class="page-btn" id="prevBtn" onclick="changePage(-1)"><i class="ph ph-caret-left"></i></button>
+            <span id="pageNumbers" style="display: flex; gap: 10px;"></span>
+            <button class="page-btn" id="nextBtn" onclick="changePage(1)"><i class="ph ph-caret-right"></i></button>
+        </div>
+
+    </div>
+
+    <footer class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo-container" style="display: block; margin-bottom: 15px;">
+                     <img src="https://placehold.co/150x40/E0E5EC/6C63FF?text=LOGO&font=montserrat" alt="Logo Purity" style="height: 40px;">
+                </a>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    Kami menyediakan furniture berkualitas tinggi dengan desain modern yang mengutamakan kenyamanan dan estetika visual.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h5>Menu</h5>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Produk</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Bantuan</h5>
+                <ul>
+                    <li><a href="#">Cara Pemesanan</a></li>
+                    <li><a href="#">Konfirmasi Pembayaran</a></li>
+                    <li><a href="#">Status Pengiriman</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Ikuti Kami</h5>
+                <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem;">Dapatkan update terbaru di sosial media kami.</p>
+                <div style="display: flex; gap: 10px;">
+                    <a href="#" class="social-btn fb"><i class="ph ph-facebook-logo"></i></a>
+                    <a href="#" class="social-btn ig"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#" class="social-btn yt"><i class="ph ph-youtube-logo"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Purity Neumorph Theme. Desain Asli dengan Sentuhan Modern.
+        </div>
+    </footer>
+
+    <script>
+        // 1. Navbar Toggle
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        // --- BLOG DATA & LOGIC ---
+
+        // Data Dummy Artikel
+        const allPosts = [
+            { id: 1, title: "5 Tips Menata Ruang Tamu Kecil", category: "Tips", date: "14 Jan 2026", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80", excerpt: "Pelajari cara memilih furnitur yang tepat agar ruangan mungil terasa lega dan fungsional tanpa mengorbankan estetika." },
+            { id: 2, title: "Tren Warna Furniture Tahun 2026", category: "Trend", date: "10 Jan 2026", img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80", excerpt: "Warna-warna bumi (earth tone) dan pastel mendominasi tren tahun ini. Lihat kombinasi warna terbaik untuk rumah Anda." },
+            { id: 3, title: "Memilih Kursi Kerja Ergonomis", category: "Guide", date: "05 Jan 2026", img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=600&q=80", excerpt: "Kesehatan punggung sangat penting. Simak panduan memilih kursi kerja yang nyaman untuk produktivitas maksimal." },
+            { id: 4, title: "Inspirasi Dapur Minimalis Modern", category: "Inspirasi", date: "01 Jan 2026", img: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80", excerpt: "Dapur bukan hanya tempat memasak. Ubah dapur Anda menjadi jantung rumah yang estetik dan bersih." },
+            { id: 5, title: "Merawat Furniture Kayu Jati", category: "Tips", date: "28 Des 2025", img: "https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&w=600&q=80", excerpt: "Kayu jati adalah investasi. Pelajari cara membersihkan dan merawatnya agar tahan puluhan tahun." },
+            { id: 6, title: "Pentingnya Pencahayaan di Kamar Tidur", category: "Tips", date: "20 Des 2025", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80", excerpt: "Lampu warm white vs cool day light? Temukan pencahayaan yang tepat untuk relaksasi maksimal." },
+            { id: 7, title: "Desain Kamar Anak yang Playful", category: "Inspirasi", date: "15 Des 2025", img: "https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=600&q=80", excerpt: "Ciptakan ruang yang aman dan menyenangkan untuk tumbuh kembang buah hati Anda dengan desain ceria." },
+            { id: 8, title: "Manfaat Tanaman Indoor", category: "Lifestyle", date: "10 Des 2025", img: "https://images.unsplash.com/photo-1463320726281-696a41370405?auto=format&fit=crop&w=600&q=80", excerpt: "Tanaman tidak hanya mempercantik ruangan, tapi juga membersihkan udara dan mengurangi stres." },
+            { id: 9, title: "Sofa Kain vs Sofa Kulit", category: "Guide", date: "05 Des 2025", img: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=600&q=80", excerpt: "Bingung memilih bahan sofa? Kami ulas kelebihan dan kekurangan masing-masing material." },
+            { id: 10, title: "DIY Dekorasi Dinding Murah", category: "DIY", date: "01 Des 2025", img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80", excerpt: "Percantik dinding kosong dengan kreasi sendiri yang hemat biaya namun tetap terlihat mahal." },
+            { id: 11, title: "Feng Shui Rumah di Tahun 2026", category: "Lifestyle", date: "25 Nov 2025", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80", excerpt: "Atur tata letak furnitur Anda untuk mengalirkan energi positif dan keberuntungan ke dalam rumah." },
+            { id: 12, title: "Sejarah Desain Neumorphism", category: "Design", date: "20 Nov 2025", img: "https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&w=600&q=80", excerpt: "Mengenal asal-usul gaya desain 'Soft UI' yang kami gunakan di website ini dan mengapa ia begitu populer." },
+        ];
+
+        // State Management
+        let currentPage = 1;
+        const itemsPerPage = 6;
+        let filteredPosts = [...allPosts]; // Copy data asli
+
+        // Elements
+        const gridElement = document.getElementById('blogGrid');
+        const searchInput = document.getElementById('searchInput');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageNumbersContainer = document.getElementById('pageNumbers');
+
+        // Fungsi Render Artikel
+        function renderPosts() {
+            gridElement.innerHTML = ""; // Bersihkan grid
+
+            // Logika Pagination
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const postsToDisplay = filteredPosts.slice(startIndex, endIndex);
+
+            // Cek jika hasil pencarian kosong
+            if (filteredPosts.length === 0) {
+                gridElement.innerHTML = `<div class="no-result">Tidak ada artikel yang cocok dengan pencarian Anda.</div>`;
+                updatePaginationButtons();
+                return;
+            }
+
+            // Loop dan buat HTML card
+            postsToDisplay.forEach(post => {
+                const card = document.createElement('article');
+                card.className = 'article-card';
+                card.innerHTML = `
+                    <div class="article-img">
+                        <img src="${post.img}" alt="${post.title}">
+                    </div>
+                    <div class="article-meta">
+                        <span>${post.category}</span>
+                        <span>${post.date}</span>
+                    </div>
+                    <h3 class="article-title">${post.title}</h3>
+                    <p class="article-excerpt">${post.excerpt}</p>
+                    <a href="blog-detail.html" class="read-more-btn">Baca Selengkapnya <i class="ph ph-arrow-right"></i></a>
+                `;
+                gridElement.appendChild(card);
+            });
+
+            updatePaginationButtons();
+        }
+
+        // Fungsi Update Tombol Pagination
+        function updatePaginationButtons() {
+            const totalPages = Math.ceil(filteredPosts.length / itemsPerPage);
+
+            // 1. Handle Prev/Next Disabled State
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages || totalPages === 0;
+
+            // 2. Generate Page Numbers
+            pageNumbersContainer.innerHTML = "";
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+                btn.innerText = i;
+                btn.onclick = () => {
+                    currentPage = i;
+                    renderPosts();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                };
+                pageNumbersContainer.appendChild(btn);
+            }
+        }
+
+        // Fungsi Ganti Halaman (Prev/Next)
+        function changePage(direction) {
+            currentPage += direction;
+            renderPosts();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Fungsi Search Logic
+        searchInput.addEventListener('input', (e) => {
+            const keyword = e.target.value.toLowerCase();
+            
+            // Filter array
+            filteredPosts = allPosts.filter(post => 
+                post.title.toLowerCase().includes(keyword) || 
+                post.excerpt.toLowerCase().includes(keyword) ||
+                post.category.toLowerCase().includes(keyword)
+            );
+
+            // Reset ke halaman 1 setiap kali search
+            currentPage = 1;
+            renderPosts();
+        });
+
+        // Initial Render
+        renderPosts();
+
+    </script>
+
+</body>
+</html>
