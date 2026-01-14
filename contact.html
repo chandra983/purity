@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Kami - Purity Neumorph</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* --- 1. CONFIG & VARIABLES (COPY DARI INDEX) --- */
+        :root {
+            --bg-color: #E0E5EC;
+            --text-main: #2D3748;
+            --text-muted: #718096;
+            --accent-color: #6C63FF; 
+            
+            /* Neumorphism Physics */
+            --shadow-light: rgba(255, 255, 255, 0.60);
+            --shadow-dark: rgba(163, 177, 198, 0.60);
+            
+            --neu-flat: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
+            --neu-flat-hover: 12px 12px 20px rgba(163, 177, 198, 0.7), -12px -12px 20px rgba(255, 255, 255, 0.7);
+            --neu-pressed: inset 6px 6px 10px var(--shadow-dark), inset -6px -6px 10px var(--shadow-light);
+            --neu-icon: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+            
+            --radius-box: 24px;
+            --radius-btn: 12px;
+        }
+
+        /* --- 2. RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { display: block; max-width: 100%; }
+        
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- 3. NAVBAR STYLES (COPY DARI INDEX) --- */
+        .navbar-container { position: sticky; top: 20px; z-index: 1000; margin: 0 20px 40px 20px; }
+        .console-nav { display: flex; justify-content: space-between; align-items: center; background-color: var(--bg-color); padding: 15px 30px; border-radius: 20px; box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light); border: 1px solid rgba(255,255,255,0.2); position: relative; }
+        .nav-logo img { height: 40px; border-radius: 20px; filter: drop-shadow(2px 2px 4px rgba(163, 177, 198, 0.4)); }
+        .nav-links { display: flex; gap: 15px; background: var(--bg-color); padding: 8px; border-radius: 16px; box-shadow: var(--neu-pressed); }
+        .nav-item { padding: 10px 20px; border-radius: 12px; font-weight: 700; color: var(--text-muted); font-size: 0.9rem; transition: all 0.3s ease; }
+        .nav-item:hover, .nav-item.active { color: var(--accent-color); box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light); transform: translateY(-1px); }
+        .nav-socials { display: flex; gap: 12px; }
+        .console-btn { width: 42px; height: 42px; border-radius: 12px; background: var(--bg-color); display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 1.2rem; box-shadow: var(--neu-flat); border: none; cursor: pointer; transition: all 0.3s; }
+        .console-btn:hover { color: var(--accent-color); transform: scale(1.1); box-shadow: var(--neu-flat-hover); }
+        .mobile-toggle { display: none; }
+
+        /* --- 4. CONTACT PAGE SPECIFIC STYLES --- */
+        
+        .page-header { text-align: center; margin-bottom: 60px; margin-top: 40px; }
+        .page-header h1 { font-family: 'Plus Jakarta Sans'; font-weight: 800; font-size: 2.5rem; margin-bottom: 10px; }
+        .page-header p { color: var(--text-muted); }
+
+        .contact-grid {
+            display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; margin-bottom: 80px;
+        }
+
+        /* Contact Info Cards */
+        .info-card {
+            background: var(--bg-color); padding: 30px; border-radius: var(--radius-box);
+            box-shadow: var(--neu-flat); margin-bottom: 30px; display: flex; align-items: flex-start; gap: 20px;
+            transition: 0.3s;
+        }
+        .info-card:hover { transform: translateY(-5px); box-shadow: var(--neu-flat-hover); }
+        
+        .info-icon {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: var(--bg-color); box-shadow: var(--neu-pressed); /* Inset well */
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent-color); font-size: 1.5rem; flex-shrink: 0;
+        }
+        .info-content h3 { font-size: 1.1rem; margin-bottom: 5px; font-weight: 700; }
+        .info-content p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Map Container */
+        .map-frame {
+            width: 100%; height: 250px; border-radius: var(--radius-box);
+            overflow: hidden; box-shadow: var(--neu-pressed); /* Inset map looks nicer */
+            padding: 10px; background: var(--bg-color);
+        }
+        .map-frame iframe { width: 100%; height: 100%; border-radius: 14px; border: none; filter: grayscale(0.5); transition: 0.3s; }
+        .map-frame:hover iframe { filter: grayscale(0); }
+
+        /* Contact Form */
+        .form-container {
+            background: var(--bg-color); padding: 40px; border-radius: var(--radius-box);
+            box-shadow: var(--neu-flat);
+        }
+        .form-group { margin-bottom: 25px; }
+        .form-label { display: block; margin-bottom: 10px; font-weight: 700; color: var(--text-main); font-size: 0.9rem; }
+        
+        .neu-input, .neu-textarea {
+            width: 100%; padding: 15px 20px;
+            border-radius: 12px; border: none; background: var(--bg-color);
+            box-shadow: var(--neu-pressed); /* The crucial inset shadow */
+            font-family: 'DM Sans'; color: var(--text-main); font-size: 1rem;
+            outline: none; transition: 0.3s;
+        }
+        .neu-input:focus, .neu-textarea:focus {
+            box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light), 0 0 0 2px var(--accent-color);
+        }
+        .neu-textarea { resize: vertical; min-height: 150px; }
+
+        .btn-submit {
+            width: 100%; padding: 16px; border-radius: 12px;
+            background: var(--bg-color); color: var(--accent-color);
+            font-weight: 800; border: none; font-size: 1rem; cursor: pointer;
+            box-shadow: var(--neu-flat); transition: 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px); box-shadow: var(--neu-flat-hover);
+            background: var(--accent-color); color: #fff;
+        }
+        .btn-submit:active { transform: translateY(1px); box-shadow: var(--neu-pressed); }
+
+        /* --- 5. FOOTER STYLES (COPY DARI INDEX) --- */
+        footer { padding: 60px 0 20px; box-shadow: -5px -5px 15px var(--shadow-light), 5px 5px 15px var(--shadow-dark); border-radius: 40px 40px 0 0; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-top: 40px; margin-bottom: 40px; }
+        .footer-col { margin-top: 30px;}
+        .footer-col h5 { font-family: 'Plus Jakarta Sans'; font-size: 1.1rem; margin-bottom: 20px; font-weight: 700; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: var(--text-muted); }
+        .footer-col ul li a:hover { color: var(--accent-color); padding-left: 5px; }
+        .copyright { text-align: center; color: var(--text-muted); font-size: 0.9rem; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .navbar-container { margin: 0; top: 0; margin-bottom: 30px; }
+            .console-nav { border-radius: 0 0 20px 20px; }
+            .mobile-toggle { display: flex; } 
+            .nav-socials a.console-btn { display: none; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--bg-color); margin-top: 15px; padding: 20px; border-radius: 0 0 20px 20px; z-index: 999; box-shadow: var(--neu-flat); }
+            .nav-links.active { display: flex; animation: slideDown 0.3s ease-out; }
+            .nav-item { text-align: center; width: 100%; box-shadow: var(--neu-flat); margin-bottom: 10px; }
+            .nav-item:active { box-shadow: var(--neu-pressed); }
+            
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-col img { margin-top: 30px;}
+        }
+        @media (max-width: 768px) {
+            .top-bar .container { flex-direction: column; gap: 5px; text-align: center; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar-container">
+        <nav class="console-nav">
+            <a href="index.html" class="nav-logo">
+                <img src="https://placehold.co/150x40/E0E5EC/6C63FF?text=PurityNeu&font=montserrat" alt="Purity Logo">
+            </a>
+
+            <div class="nav-links" id="mobileMenu">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="about.html" class="nav-item">About</a>
+                <a href="products.html" class="nav-item">Produk</a>
+                <a href="blog.html" class="nav-item">Blog</a>
+                <a href="contact.html" class="nav-item active">Contact</a> </div>
+
+            <div class="nav-socials">
+                <a href="#" class="console-btn"><i class="ph ph-facebook-logo"></i></a>
+                <a href="#" class="console-btn"><i class="ph ph-instagram-logo"></i></a>
+                <button class="console-btn mobile-toggle" onclick="toggleMenu()">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        
+        <div class="page-header">
+            <h1>Hubungi Kami</h1>
+            <p>Punya pertanyaan atau ingin konsultasi desain? Kami siap membantu.</p>
+        </div>
+
+        <div class="contact-grid">
+            
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-icon"><i class="ph ph-map-pin"></i></div>
+                    <div class="info-content">
+                        <h3>Lokasi Showroom</h3>
+                        <p>Jl. Sudirman No. 45, Jakarta Selatan<br>Indonesia 12190</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon"><i class="ph ph-envelope-simple"></i></div>
+                    <div class="info-content">
+                        <h3>Email</h3>
+                        <p>hello@purityneu.com<br>support@purityneu.com</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon"><i class="ph ph-whatsapp-logo"></i></div>
+                    <div class="info-content">
+                        <h3>WhatsApp</h3>
+                        <p>+62 812 3456 7890<br>Senin - Jumat, 09:00 - 17:00</p>
+                    </div>
+                </div>
+
+                <div class="map-frame">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126920.28317769415!2d106.74902146206087!3d-6.229571216067098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fdad786a2!2sJakarta%2C%20Special%20Capital%20Region%20of%20Jakarta!5e0!3m2!1sen!2sid!4v1642133292434!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <h3 style="margin-bottom: 25px; font-family: 'Plus Jakarta Sans'; font-size: 1.5rem;">Kirim Pesan</h3>
+                
+                <form id="whatsappForm">
+                    <div class="form-group">
+                        <label class="form-label">Nama Lengkap</label>
+                        <input type="text" id="name" class="neu-input" placeholder="Nama Anda" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" id="email" class="neu-input" placeholder="email@contoh.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Pesan</label>
+                        <textarea id="message" class="neu-textarea" placeholder="Tulis pesan atau pertanyaan Anda di sini..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <i class="ph ph-paper-plane-right"></i> Kirim via WhatsApp
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo-container" style="display: block; margin-bottom: 15px;">
+                     <img src="https://placehold.co/150x40/E0E5EC/6C63FF?text=LOGO&font=montserrat" alt="Logo Purity" style="height: 40px;">
+                </a>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    Kami menyediakan furniture berkualitas tinggi dengan desain modern yang mengutamakan kenyamanan dan estetika visual.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h5>Menu</h5>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Produk</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Bantuan</h5>
+                <ul>
+                    <li><a href="#">Cara Pemesanan</a></li>
+                    <li><a href="#">Konfirmasi Pembayaran</a></li>
+                    <li><a href="#">Status Pengiriman</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Ikuti Kami</h5>
+                <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem;">Dapatkan update terbaru di sosial media kami.</p>
+                <div style="display: flex; gap: 10px;">
+                    <a href="#" class="social-btn fb"><i class="ph ph-facebook-logo"></i></a>
+                    <a href="#" class="social-btn ig"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#" class="social-btn yt"><i class="ph ph-youtube-logo"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Purity Neumorph Theme. Desain Asli dengan Sentuhan Modern.
+        </div>
+    </footer>
+
+    <script>
+        // 1. Mobile Menu Toggle
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        // 2. WhatsApp Form Logic
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Mencegah reload halaman
+
+            // Ambil data dari form
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Nomor WA Tujuan (Ganti dengan nomor Anda, format 62...)
+            const phoneNumber = "6281234567890"; 
+
+            // Format Pesan
+            const text = `Halo Admin PurityNeu,%0A%0ASaya ingin bertanya.%0A%0A*Nama:* ${name}%0A*Email:* ${email}%0A*Pesan:*%0A${message}`;
+
+            // Buat URL WhatsApp
+            const url = `https://wa.me/${phoneNumber}?text=${text}`;
+
+            // Buka di tab baru
+            window.open(url, '_blank');
+        });
+    </script>
+
+</body>
+</html>
