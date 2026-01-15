@@ -142,7 +142,7 @@
         }
 
         .nav-logo img {
-            height: 40px;
+            width: 150px;
             border-radius: 20px;
             filter: drop-shadow(2px 2px 4px rgba(163, 177, 198, 0.4));
         }
@@ -364,6 +364,7 @@
             margin-top: 100px; 
         }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-top: 40px; margin-bottom: 40px; }
+        .footer-grid img { width: 130px;}
         .footer-col { margin-top: 30px;}
         .footer-col h5 { font-family: 'Plus Jakarta Sans'; font-size: 1.1rem; margin-bottom: 20px; font-weight: 700; }
         .footer-col ul li { margin-bottom: 12px; }
@@ -428,7 +429,7 @@
         @media (max-width: 992px) {
             .hero-banner { flex-direction: column; text-align: center; padding: 40px 20px; }
             .hero-content { max-width: 100%; margin-bottom: 30px; }
-            .hero-image { position: relative; right: 0; transform: none; width: 100%; mask-image: linear-gradient(to left, black 80%, transparent 100%);
+            .hero-image { position: relative; right: 0; aspect-ratio: 1/1; transform: none; width: 100%; mask-image: linear-gradient(to left, black 80%, transparent 100%);
             -webkit-mask-image: linear-gradient(to left, black 100%, transparent 100%); border-radius: 20px; }
             .features-grid { grid-template-columns: repeat(2, 1fr); }
             .blog-grid { grid-template-columns: repeat(2, 1fr); }
@@ -458,7 +459,7 @@
         <nav class="console-nav">
             
             <a href="index.html" class="nav-logo">
-                <img src="https://placehold.co/150x40/E0E5EC/6C63FF?text=PurityNeu&font=montserrat" alt="Purity Neumorph Logo" width="150" height="40">
+                <img src="img/logo.webp" alt="Purity Neumorph Logo" width="150" height="40">
             </a>
 
             <div class="nav-links" id="mobileMenu">
@@ -676,8 +677,8 @@
     <footer class="container">
         <div class="footer-grid">
             <div class="footer-col">
-                <a href="#" class="logo-container" style="display: block; margin-bottom: 15px;">
-                     <img src="https://placehold.co/150x40/E0E5EC/6C63FF?text=LOGO&font=montserrat" alt="Logo Purity Furniture" style="height: 40px;" width="150" height="40">
+                <a href="index.html" class="logo-container" style="display: block; margin-bottom: 15px;">
+                     <img src="img/logo.webp" alt="Logo Purity Furniture" style="height: 40px;" width="150" height="40">
                 </a>
                 <p style="color: var(--text-muted); line-height: 1.6;">
                     Kami menyediakan furniture berkualitas tinggi dengan desain modern yang mengutamakan kenyamanan dan estetika visual.
