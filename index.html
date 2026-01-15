@@ -428,7 +428,8 @@
         @media (max-width: 992px) {
             .hero-banner { flex-direction: column; text-align: center; padding: 40px 20px; }
             .hero-content { max-width: 100%; margin-bottom: 30px; }
-            .hero-image { position: relative; right: 0; transform: none; width: 100%; }
+            .hero-image { position: relative; right: 0; transform: none; width: 100%; mask-image: linear-gradient(to left, black 80%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to left, black 100%, transparent 100%); border-radius: 20px; }
             .features-grid { grid-template-columns: repeat(2, 1fr); }
             .blog-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -437,6 +438,7 @@
             
             .floating-widgets { bottom: 20px; right: 20px; }
             .float-btn { width: 50px; height: 50px; font-size: 24px; }
+            .hero-title { font-size: 2rem;}
         }
 
         @media (max-width: 768px) {
@@ -493,7 +495,7 @@
                 <p class="hero-desc">Diskon hingga 40% untuk set sofa dan meja makan. Upgrade gaya rumah Anda dengan sentuhan modern.</p>
                 <button class="btn btn-fill">Belanja Sekarang</button>
             </div>
-            <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+            <img src="img/index.webp" 
                  alt="Set Ruang Tamu Minimalis Neumorphism" 
                  class="hero-image"
                  width="600" height="400"
@@ -535,7 +537,7 @@
         <div class="product-grid">
             <div class="product-card">
                 <div class="product-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    <img src="img/Sofa Hijau.webp" 
                          alt="Sofa Hijau Emerald Mewah" 
                          width="600" height="400"
                          loading="lazy">
@@ -545,14 +547,14 @@
                     <h3 class="product-title">Sofa Hijau Emerald</h3>
                     <div class="product-footer">
                         <span class="product-price">Rp 4.500.000</span>
-                        <a href="#" class="btn-detail">Lihat Detail</a>
+                        <a href="product-detail.html" class="btn-detail">Lihat Detail</a>
                     </div>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="product-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1503602642458-232111445840?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    <img src="img/Kursi Santai.webp" 
                          alt="Kursi Santai Modern untuk Kamar" 
                          width="600" height="400"
                          loading="lazy">
@@ -562,14 +564,14 @@
                     <h3 class="product-title">Kursi Santai Modern</h3>
                     <div class="product-footer">
                         <span class="product-price">Rp 1.250.000</span>
-                        <a href="#" class="btn-detail">Lihat Detail</a>
+                        <a href="product-detail.html" class="btn-detail">Lihat Detail</a>
                     </div>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="product-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1577140917170-285929fb55b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    <img src="img/Lampu Meja.webp" 
                          alt="Lampu Meja Kayu Estetik" 
                          width="600" height="400"
                          loading="lazy">
@@ -579,14 +581,14 @@
                     <h3 class="product-title">Lampu Meja Kayu</h3>
                     <div class="product-footer">
                         <span class="product-price">Rp 450.000</span>
-                        <a href="#" class="btn-detail">Lihat Detail</a>
+                        <a href="product-detail.html" class="btn-detail">Lihat Detail</a>
                     </div>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="product-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    <img src="img/Rak Minimalis.webp" 
                          alt="Rak Minimalis Putih Penyimpanan" 
                          width="600" height="400"
                          loading="lazy">
@@ -596,14 +598,14 @@
                     <h3 class="product-title">Rak Minimalis Putih</h3>
                     <div class="product-footer">
                         <span class="product-price">Rp 2.100.000</span>
-                        <a href="#" class="btn-detail">Lihat Detail</a>
+                        <a href="product-detail.html" class="btn-detail">Lihat Detail</a>
                     </div>
                 </div>
             </div>
         </div>
         
         <div style="text-align: center; margin-bottom: 80px;">
-            <a href="#" class="btn">Lihat Semua Produk</a>
+            <a href="products.html" class="btn">Lihat Semua Produk</a>
         </div>
     </section>
 
@@ -632,7 +634,7 @@
         <div class="blog-grid">
             <article class="blog-card">
                 <div class="blog-img">
-                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    <img src="img/blog/blog1.webp" 
                          alt="Desain Interior Ruang Tamu Minimalis" 
                          width="600" height="400"
                          loading="lazy">
@@ -640,12 +642,12 @@
                 <div class="blog-date">14 Jan 2026</div>
                 <h3 class="blog-title">5 Tips Menata Ruang Tamu Kecil Agar Luas</h3>
                 <p class="blog-excerpt">Pelajari cara memilih furnitur yang tepat agar ruangan mungil terasa lega dan fungsional...</p>
-                <a href="#" class="read-more">Baca Selengkapnya <i class="ph ph-arrow-right"></i></a>
+                <a href="blog-detail.html" class="read-more">Baca Selengkapnya <i class="ph ph-arrow-right"></i></a>
             </article>
 
             <article class="blog-card">
                 <div class="blog-img">
-                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    <img src="img/blog/blog2.webp" 
                          alt="Kombinasi Warna Cat Dinding dan Furniture" 
                          width="600" height="400"
                          loading="lazy">
@@ -653,12 +655,12 @@
                 <div class="blog-date">10 Jan 2026</div>
                 <h3 class="blog-title">Tren Warna Furniture Tahun 2026</h3>
                 <p class="blog-excerpt">Warna-warna bumi dan pastel mendominasi tren tahun ini. Lihat kombinasi warna terbaik...</p>
-                <a href="#" class="read-more">Baca Selengkapnya <i class="ph ph-arrow-right"></i></a>
+                <a href="blog-detail.html" class="read-more">Baca Selengkapnya <i class="ph ph-arrow-right"></i></a>
             </article>
 
             <article class="blog-card">
                 <div class="blog-img">
-                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                    <img src="img/blog/blog3.webp" 
                          alt="Kursi Kerja Ergonomis Modern" 
                          width="600" height="400"
                          loading="lazy">
@@ -666,7 +668,7 @@
                 <div class="blog-date">05 Jan 2026</div>
                 <h3 class="blog-title">Memilih Kursi Kerja yang Ergonomis</h3>
                 <p class="blog-excerpt">Kesehatan punggung sangat penting. Simak panduan memilih kursi kerja yang nyaman...</p>
-                <a href="#" class="read-more">Baca Selengkapnya <i class="ph ph-arrow-right"></i></a>
+                <a href="blog-detail.html" class="read-more">Baca Selengkapnya <i class="ph ph-arrow-right"></i></a>
             </article>
         </div>
     </section>
